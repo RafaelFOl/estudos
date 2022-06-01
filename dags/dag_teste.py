@@ -13,6 +13,7 @@ with DAG(
 ) as dag:
 
     def print_array():
+        import numpy as np
         """Print Numpy array."""
         a = np.arange(15).reshape(3, 5)
         print(a)
