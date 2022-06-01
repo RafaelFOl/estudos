@@ -1,0 +1,8 @@
+dags:
+  gitSync:
+    enable: true
+    repo: "https://github.com/RafaelFOl/estudos.git"
+    repoSubPath: "dags"
+
+
+  
