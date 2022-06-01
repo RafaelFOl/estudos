@@ -14,10 +14,9 @@ with DAG(
 
     def print_array():
         import numpy as np
-        """Print Numpy array."""
+        print("Print Numpy array")
         a = np.arange(15).reshape(3, 5)
         print(a)
-        return a
 
     run_this = PythonOperator(
         task_id="print_the_context",
