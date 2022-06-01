@@ -1,8 +1,6 @@
 dags:
   gitSync:
-    enable: true
+    enabled: true
     repo: "https://github.com/RafaelFOl/estudos.git"
+    branch: "master"
     repoSubPath: "dags"
-
-
-  

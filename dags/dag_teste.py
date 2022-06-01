@@ -22,3 +22,4 @@ with DAG(
         task_id="print_the_context",
         python_callable=print_array,
     )
+run_this
