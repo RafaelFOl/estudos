@@ -2,6 +2,7 @@ import pendulum
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from modulos import GetSparkContext
 
 
 with DAG(
