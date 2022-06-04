@@ -6,16 +6,16 @@ metadata:
 spec:
   type: Python
   mode: cluster
-  image: senior2017/taxi-pipe:1.0
+  image: "senior2017/taxi-pipe:1.0"
   imagePullPolicy: Always
-  mainApplicationFile: "local:///app/spark/taxi-spark.py"
+  mainApplicationFile: "local:///app/taxi-spark.py"
   sparkVersion: "3.1.1"
   restartPolicy:
     type: OnFailure
     onFailureRetries: 3
     onFailureRetryInterval: 10
     onSubmissionFailureRetries: 5
-    onSubmissionFailureRetriesInterval: 20
+    onSubmissionFailureRetryInterval: 20
   hadoopConf:
     "fs.s3a.endpoint": "http://localhost:9000"
   driver:
@@ -24,7 +24,7 @@ spec:
     memory: "512m"
     labels:
       version: 3.1.1
-    serviceAccount: default
+    serviceAccount: sparkoperator
   executor:
     cores: 1
     instances: 2

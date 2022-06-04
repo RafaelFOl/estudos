@@ -8,7 +8,7 @@ RUN mkdir -p /app
 
 COPY taxi-spark.py /app/
 
-COPY ../../k8s-config/spark/jars/ /opt/spark/jars
+COPY ./jars/ /opt/spark/jars
 
 WORKDIR /app
 
