@@ -1,0 +1,33 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: taxi-spark
+  namespace: spark
+spec:
+  type: Python
+  mode: cluster
+  image: "senior2017/taxi-pipe:1.0"
+  imagePullPolicy: Always
+  mainApplicationFile: "local:///app/taxi-spark.py"
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: OnFailure
+    onFailureRetries: 3
+    onFailureRetryInterval: 10
+    onSubmissionFailureRetries: 5
+    onSubmissionFailureRetryInterval: 20
+  hadoopConf:
+    "fs.s3a.endpoint": "http://localhost:9000"
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    serviceAccount: sparkoperator
+  executor:
+    cores: 1
+    instances: 2
+    memory: "512m"
+    labels:
+      version: 3.1.1

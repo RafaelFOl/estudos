@@ -8,3 +8,6 @@ docker tag taxi-pipe:1.0 senior2017/taxi-pipe:1.0
 docker push senior2017/taxi-pipe:1.0
 
 docker rmi $(docker images --filter "dangline=true" -q --no-trunc) -f
+
+
+kubectl get all -n spark
