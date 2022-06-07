@@ -4,7 +4,7 @@ from pyspark import SparkContext, SparkConf
 
 conf=(
     SparkConf()
-         .set('spark.hadoop.fs.s3a.endpoint','http://localhost:9000')
+         .set('spark.hadoop.fs.s3a.endpoint','http://10.96.101.36:9000')
          .set('spark.hadoop.fs.s3a.access.key','myaccesskey')
          .set('spark.hadoop.fs.s3a.secret.key','mysecretkey')
          .set('spark.hadoop.fs.s3a.path.style.access',True)
@@ -21,9 +21,9 @@ sc=SparkContext(conf=conf).getOrCreate()
 if __name__=='__main__':
     spark=SparkSession.builder.appName('test-dag-airflow-spark').getOrCreate()
     
-    spark.SparkContext.setLogLevel("INFO")
+    #spark.SparkContext.setLogLevel("INFO")
 
-    schema=spark.read.format('json').option('inferSchema',true).json('s3a//estudos/*json')
+    schema=spark.read.format('json').option('inferSchema','true').json('s3a://estudos/*json')
 
     schema.show()
 

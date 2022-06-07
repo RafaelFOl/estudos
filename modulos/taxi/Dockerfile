@@ -7,8 +7,8 @@ USER root:root
 RUN mkdir -p /app
 
 COPY taxi-spark.py /app/
-
-COPY ./jars/ /opt/spark/jars
+RUN ls
+COPY ./jars/ /opt/spark/jars/
 
 WORKDIR /app
 
