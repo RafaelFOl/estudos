@@ -2,7 +2,7 @@ import pendulum
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkubernetesOperator
+from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparKubernetesOperator
 
 with DAG(
     dag_id="example_python_operator",
@@ -12,7 +12,7 @@ with DAG(
     tags=["example"],
 ) as dag:
     
-    taxi_task_select = SparkubernetesOperator(
+    taxi_task_select = SparKubernetesOperator(
         task_id="taxi_task_select",
         namespace='spark',
         application_file='taxi-spark-app.yaml',
