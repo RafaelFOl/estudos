@@ -11,10 +11,11 @@ with DAG(
     catchup=False,
     tags=["example"],
 ) as dag:
-
-
-taxi_task_select = SparkubernetesOperator(
-    task_id="taxi_task_select",
-    namespace='spark',
-    application_file='taxi-spark-app.yaml',
-    kubernetes_conn_id='k8s')
+    
+    taxi_task_select = SparkubernetesOperator(
+        task_id="taxi_task_select",
+        namespace='spark',
+        application_file='taxi-spark-app.yaml',
+        kubernetes_conn_id='k8s')
+    
+taxi_task_select
