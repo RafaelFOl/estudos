@@ -29,7 +29,6 @@ with DAG(
         'local:///app/taxi-spark.py'],
         is_delete_operator_pod=True,
         in_cluster=True,
-        resources={'request_cpu': '1200m','limit_memory':'512m'},
         task_id="taxi_task_select",
         get_logs=True,
 )
