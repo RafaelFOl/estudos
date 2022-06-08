@@ -21,7 +21,15 @@ with DAG(
         in_cluster=True,
         task_id="taxi_task_select",
         get_logs=True,
-        pod_template_file='taxi-spark-app.yaml'
+        cmds=['$SPARK_HOME/bin/spark-submit'],
+        arguments=[
+        '--master k8s://https://10.96.0.1:443',
+        '--deploy-mode cluster',
+        '--name spark-pi',
+        ' --class org.apache.spark.examples.SparkPi',
+        '--conf spark.executor.instances=5',
+        '--conf spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
+        'local:///app/taxi-spark.py']
 )
     
 taxi_task_select
