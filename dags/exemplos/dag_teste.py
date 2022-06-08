@@ -27,8 +27,8 @@ with DAG(
         '--deploy-mode', 'cluster',
         '--name', 'spark-pi',
         '--class' ,'org.apache.spark.examples.SparkPi',
-        '--conf spark.executor.instances=5',
-        '--conf spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
+        '--conf' ,'spark.executor.instances=5',
+        '--conf' ,'spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
         'local:///app/taxi-spark.py'])
     
 taxi_task_select
