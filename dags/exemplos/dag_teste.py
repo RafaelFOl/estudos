@@ -8,7 +8,7 @@ from kubernetes.client import models as k8s
 with DAG(
     dag_id="example_python_operator",
     schedule_interval=None,
-    start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
+    start_date=pendulum.datetime(2022, 6, 8, tz="UTC"),
     catchup=False,
     tags=["example"],
 ) as dag:
@@ -16,14 +16,13 @@ with DAG(
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
         image="senior2017/taxi-pipe:1.8",
-        name='spark-job-task',
+        name='taxi_task_select',
         cmds=["bin/spark-submit"],
         arguments=[
         '--master k8s://https://10.96.0.1:443',
         '--deploy-mode cluster',
-        '--properties-file /opt/spark/conf/spark.properties',
         '--name taxi_task_select',
-        '--class org.apache.spark.deploy.PythonRunner ',
+        ' --class org.apache.spark.examples.SparkPi',
         '--conf spark.executor.instances=2',
         '--conf spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
         'local:///app/taxi-spark.py'],
