@@ -17,7 +17,7 @@ with DAG(
         namespace='spark',
         image="senior2017/taxi-pipe:1.8",
         name='taxi_task_select',
-        cmds=["bin/spark-submit"],
+        cmds=["/bin/bash/spark-submit"],
         arguments=[
         '--master k8s://https://10.96.0.1:443',
         '--deploy-mode cluster',
