@@ -21,7 +21,7 @@ with DAG(
         in_cluster=True,
         task_id="taxi_task_select",
         get_logs=True,
-        cmds=['$SPARK_HOME/bin/spark-submit'],
+        cmds=['/usr/bin/tini -s -- /opt/spark/bin/spark-submit'],
         arguments=[
         '--master k8s://https://10.96.0.1:443',
         '--deploy-mode cluster',
