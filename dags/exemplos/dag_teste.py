@@ -24,8 +24,8 @@ with DAG(
         cmds=['/opt/spark/bin/spark-submit'],
         arguments=[
         '--master','k8s://https://10.96.0.1:443',
-        '--deploy-mode cluster',
-        '--name spark-pi',
+        '--deploy-mode', 'cluster',
+        '--name', 'spark-pi',
         '--class org.apache.spark.examples.SparkPi',
         '--conf spark.executor.instances=5',
         '--conf spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
