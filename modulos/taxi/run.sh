@@ -1,3 +1,3 @@
 #! /usr/bin/python
 
-./taxispark.py
+python taxispark.py

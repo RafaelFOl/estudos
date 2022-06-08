@@ -13,7 +13,7 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="senior2017/taxi-pipe:1.14",
+        image="senior2017/taxi-pipe:1.15",
         name='taxi_task_select',
         is_delete_operator_pod=False,
         in_cluster=True,
