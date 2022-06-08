@@ -23,7 +23,7 @@ with DAG(
         get_logs=True,
         cmds=['/opt/spark/bin/spark-submit'],
         arguments=[
-        'master=k8s://https://10.96.0.1:443',
+        "--master=k8s://https://10.96.0.1:443",
         '--deploy-mode cluster',
         '--name spark-pi',
         '--class org.apache.spark.examples.SparkPi',
