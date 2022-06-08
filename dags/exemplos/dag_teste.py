@@ -19,6 +19,6 @@ with DAG(
         in_cluster=True,
         task_id="taxi_task_select",
         get_logs=True,
-        cmds=['python3 taxispark.py'])
+        cmds=['/bin/sh -c','python3 taxispark.py'])
     
 taxi_task_select
