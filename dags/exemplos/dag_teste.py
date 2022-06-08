@@ -17,19 +17,11 @@ with DAG(
         namespace='spark',
         image="senior2017/taxi-pipe:1.8",
         name='taxi_task_select',
-        cmds=["/opt/spark/bin/spark-submit"],
-        arguments=[
-        '--master k8s://https://10.96.0.1:443',
-        '--deploy-mode cluster',
-        '--name taxi_task_select',
-        ' --class org.apache.spark.examples.SparkPi',
-        '--conf spark.executor.instances=2',
-        '--conf spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
-        'local:///app/taxi-spark.py'],
         is_delete_operator_pod=True,
         in_cluster=True,
         task_id="taxi_task_select",
         get_logs=True,
+        pod_template_file='taxi-spark-app.yaml'
 )
     
 taxi_task_select
