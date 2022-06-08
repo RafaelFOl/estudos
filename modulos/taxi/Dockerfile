@@ -7,9 +7,18 @@ USER root:root
 RUN mkdir -p /app
 
 COPY taxispark.py /app/
-RUN ls
+
+COPY run.sh /app/
+
 COPY ./jars/ /opt/spark/jars/
 
 WORKDIR /app
+
+ENV PATH=$PATH:/app
+
+RUN chmod 777 /app
+
+RUN chmod 777 /app/taxispark.py
+RUN chmod 777 /app/run.sh
 
 USER 1001
