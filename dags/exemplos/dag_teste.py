@@ -16,6 +16,7 @@ with DAG(
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
         image="senior2017/taxi-pipe:1.8",
+        name='spark-job-task',
         cmds=["bin/spark-submit"],
         arguments=[
         '--master k8s://https://10.96.0.1:443',
