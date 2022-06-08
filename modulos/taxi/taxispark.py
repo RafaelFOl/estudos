@@ -2,8 +2,10 @@ from pyspark.sql import SparkSession
 from pyspark import SparkContext, SparkConf
 
 
-conf=(
-    SparkConf()
+def run_taxi_pipe():
+    
+    conf=(SparkConf()
+         .setMaster("k8s://https://10.96.0.1:443")
          .set('spark.hadoop.fs.s3a.endpoint','http://10.96.101.36:9000')
          .set('spark.hadoop.fs.s3a.access.key','myaccesskey')
          .set('spark.hadoop.fs.s3a.secret.key','mysecretkey')
@@ -13,12 +15,10 @@ conf=(
          .set('spark.hadoop.fs.s3a.impl','org.apache.hadoop.fs.s3a.S3AFileSystem')
          .set('spark.delta.logStore.class','org.apache.spark.sql.delta.storage.S3SingleDriverLogStore')
          .set('spark.sql.extensions','io.delta.sql.DeltaSparkSessionsExtension')
-         .set('spark.sql.catalog.spark_catalog','org.apache.spark.sql.delta.catalog.DeltaCatalog')
-)
+         .set('spark.sql.catalog.spark_catalog','org.apache.spark.sql.delta.catalog.DeltaCatalog'))
+    sc=SparkContext(conf=conf).getOrCreate()
 
-sc=SparkContext(conf=conf).getOrCreate()
-
-if __name__=='__main__':
+    
     spark=SparkSession.builder.appName('test-dag-airflow-spark').getOrCreate()
     
     #spark.SparkContext.setLogLevel("INFO")
