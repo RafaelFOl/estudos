@@ -16,4 +16,4 @@ RUN chmod 777 /app
 
 RUN chmod 777 /app/taxispark.py
 
-USER 1001
+ENV SPARK_HOME /opt/spark

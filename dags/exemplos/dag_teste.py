@@ -13,7 +13,7 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="senior2017/taxi-pipe:1.8",
+        image="senior2017/taxi-pipe:1.21",
         name='taxi_task_select',
         is_delete_operator_pod=False,
         in_cluster=True,
@@ -23,11 +23,20 @@ with DAG(
          arguments=[ 
         '--master','k8s://https://10.96.0.1:443',
         '--name','spark-name1',
-        '--conf', 'spark.jars.ivy=/tmp/.ivy',
+        '--conf', 'spark.kubernetes.namespace=$NAMESPACE',
+        '--conf', 'spark.kubernetes.allocation.batch.size=3',
+        '--conf', 'spark.kubernetes.allocation.batch.delay=1',
+        '--conf', 'spark.driver.cores=1',
+        '--conf', 'spark.executor.cores=1',
+        '--conf', 'spark.driver.memory=2192m',
+        '--conf', 'spark.executor.memory=2192m',
+        '--conf', 'spark.dynamicAllocation.enabled=true',
+        '--conf', 'spark.dynamicAllocation.shuffleTracking.enabled=true',
+        '--conf', 'spark.kubernetes.driver.container.image=senior2017/taxi-pipe:1.21',
+        '--conf', 'spark.kubernetes.executor.container.image=senior2017/taxi-pipe:1.21',
+        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
         '--class' ,'org.apache.spark.examples.SparkPi',
-        '--deploy-mode','cluster',
-        '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
-        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=oliveira',
+        '--deploy-mode','cluster', 
         'local:///app/taxispark.py'
          ]
      )
