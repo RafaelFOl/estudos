@@ -25,7 +25,7 @@ with DAG(
         '--name','spark-name1',
         '--conf', 'spark.driver.extraJavaOptions=-Divy.home=/root/.ivy2 \ ',
         '--class' ,'org.apache.spark.examples.SparkPi',
-        '/app/taxispark'
+        '/app/taxispark.py'
          ]
      )
     
