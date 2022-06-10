@@ -23,8 +23,8 @@ with DAG(
          arguments=[ 
         '--master','k8s://https://10.96.0.1:443',
         '--name','spark-name1',
-        '--class' ,'org.apache.spark.examples.SparkPi'
-        '--conf','spark.driver.host=localhost',
+        '--conf', 'spark.driver.extraJavaOptions=-Divy.home=/root/.ivy2 \ ',
+        '--class' ,'org.apache.spark.examples.SparkPi',
         '/app/taxispark'
          ]
      )
