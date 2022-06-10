@@ -26,6 +26,7 @@ with DAG(
         '--conf', 'spark.driver.extraJavaOptions=-Divy.home=/root/.ivy2 \ ',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster',
+        '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
         'local:///app/taxispark.py'
          ]
      )
