@@ -13,7 +13,7 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="senior2017/taxi-pipe:1.20",
+        image="senior2017/taxi-pipe:1.8",
         name='taxi_task_select',
         is_delete_operator_pod=False,
         in_cluster=True,
@@ -26,7 +26,7 @@ with DAG(
         '--conf', 'spark.jars.ivy=/tmp/.ivy',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster',
-        '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.20',
+        '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
         '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=default',
         'local:///app/taxispark.py'
          ]
