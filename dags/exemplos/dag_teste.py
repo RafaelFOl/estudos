@@ -29,6 +29,7 @@ with DAG(
         '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
         '--conf', 'spark.kubernetes.authenticate.caCertFile=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt',
         '--conf', 'spark.kubernetes.authenticate.oauthTokenFile=/var/run/secrets/kubernetes.io/serviceaccount/token',
+       '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=default',
         'local:///app/taxispark.py'
          ]
      )
