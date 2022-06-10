@@ -23,7 +23,7 @@ with DAG(
          arguments=[ 
         '--master','k8s://https://10.96.0.1:443',
         '--name','spark-name1',
-        '--conf', 'spark.driver.extraJavaOptions=-Divy.home=/root/.ivy2 \ ',
+        '--conf', 'spark.jars.ivy=/tmp/.ivy',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster',
         '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',

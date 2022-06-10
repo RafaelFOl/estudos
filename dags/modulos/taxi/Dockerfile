@@ -16,7 +16,4 @@ RUN chmod 777 /app
 
 RUN chmod 777 /app/taxispark.py
 
-RUN pip install ocean-spark-airflow-provider
- 
-
 USER 1001
