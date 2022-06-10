@@ -6,19 +6,17 @@ USER root:root
 
 RUN mkdir -p /app
 
-COPY taxispark.py /app/
-
-COPY run.sh /app/
+COPY taxispark.py /app/ 
 
 COPY ./jars/ /opt/spark/jars/
 
 WORKDIR /app
 
-ENV PATH=$PATH:/app
-
 RUN chmod 777 /app
 
 RUN chmod 777 /app/taxispark.py
-RUN chmod 777 /app/run.sh
+
+RUN pip install ocean-spark-airflow-provider
+ 
 
 USER 1001

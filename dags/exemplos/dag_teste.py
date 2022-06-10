@@ -13,12 +13,20 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="senior2017/taxi-pipe:1.15",
+        image="senior2017/taxi-pipe:1.20",
         name='taxi_task_select',
         is_delete_operator_pod=False,
         in_cluster=True,
         task_id="taxi_task_select",
-        get_logs=True,
-        cmds=['python3 taxispark.py'])
+        get_logs=True,    
+        cmds=['/opt/spark/bin/spark-submit'],
+         arguments=[ 
+        '--master','k8s://https://10.96.0.1:443',
+        '--name','spark-name1',
+        '--class' ,'org.apache.spark.examples.SparkPi'
+        '--conf','spark.driver.host=localhost',
+        '/app/taxispark'
+         ]
+     )
     
 taxi_task_select
