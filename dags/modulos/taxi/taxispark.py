@@ -16,6 +16,8 @@ conf=(
 )
 sc=SparkContext(conf=conf).getOrCreate()
 if __name__=='__main__':
+     spark=SparkSession.builder.appName('test-dag-airflow-spark').getOrCreate()
+     
      schema=spark.read.format('json').option('inferSchema','true').json('s3a://estudos/*json')
      
      schema.show()
