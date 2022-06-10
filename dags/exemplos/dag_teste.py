@@ -13,7 +13,7 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="senior2017/taxi-pipe:1.21",
+        image="senior2017/taxi-pipe:1.22",
         name='taxi_task_select',
         is_delete_operator_pod=False,
         in_cluster=True,
@@ -32,8 +32,8 @@ with DAG(
         '--conf', 'spark.executor.memory=2192m',
         '--conf', 'spark.dynamicAllocation.enabled=true',
         '--conf', 'spark.dynamicAllocation.shuffleTracking.enabled=true',
-        '--conf', 'spark.kubernetes.driver.container.image=senior2017/taxi-pipe:1.21',
-        '--conf', 'spark.kubernetes.executor.container.image=senior2017/taxi-pipe:1.21',
+        '--conf', 'spark.kubernetes.driver.container.image=senior2017/taxi-pipe:1.22',
+        '--conf', 'spark.kubernetes.executor.container.image=senior2017/taxi-pipe:1.22',
         '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=default',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster', 
