@@ -34,7 +34,7 @@ with DAG(
         '--conf', 'spark.dynamicAllocation.shuffleTracking.enabled=true',
         '--conf', 'spark.kubernetes.driver.container.image=senior2017/taxi-pipe:1.21',
         '--conf', 'spark.kubernetes.executor.container.image=senior2017/taxi-pipe:1.21',
-        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=spark',
+        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=spark-user',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster', 
         'local:///app/taxispark.py'
