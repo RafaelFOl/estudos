@@ -6,7 +6,7 @@ metadata:
 spec:
   type: Python
   mode: cluster
-  image: "senior2017/taxi-pipe:1.20"
+  image: "rroliveira/taxi-pipe:1.0"
   imagePullPolicy: Always
   mainApplicationFile: "local:///app/taxispark.py"
   sparkVersion: "3.1.1"
