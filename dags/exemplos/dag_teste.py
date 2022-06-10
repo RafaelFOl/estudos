@@ -27,7 +27,7 @@ with DAG(
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster',
         '--conf','spark.kubernetes.container.image=senior2017/taxi-pipe:1.8',
-        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=default',
+        '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=oliveira',
         'local:///app/taxispark.py'
          ]
      )
