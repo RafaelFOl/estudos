@@ -20,8 +20,10 @@ docker push pathDockerHub/taxi-pipe:1.0
 docker rmi $(docker images --filter "dangline=true" -q --no-trunc) -f
 ```
   
+
+# conceder acesso em todo o cluster (CUIDADO)
+
 ```
-#conceder acesso em todo o cluster (CUIDADO)  
 kubectl create clusterrolebinding permissive-binding \
   --clusterrole=cluster-admin \
   --user=admin \
