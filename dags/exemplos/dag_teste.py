@@ -2,6 +2,13 @@ import pendulum
 
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+from airflow.operators.python import PythonOperator
+
+def _extract(ds):
+    print(ds)
+
+def _xxcom():
+    return {"key":'ola',"value":"mundo"}
 
 with DAG(
     dag_id="example_python_operator",
@@ -40,5 +47,18 @@ with DAG(
         'local:///app/taxispark.py'
          ]
      )
+    ds_teste = PythonOperator(
+        task_id="ds_teste",
+        python_callable=_extract
+    )
+
+    com_teste = PythonOperator(
+        task_id="com_teste",
+        python_callable=_xxcom
+    )
+
+
     
+ds_teste
+com_teste
 taxi_task_select
