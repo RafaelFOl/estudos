@@ -15,7 +15,7 @@ with DAG(
 ) as dag:
     
     taxi_task_select = KubernetesPodOperator(
-        namespace='spark',
+        namespace='spark-operator',
         image="rroliveira/taxi-pipe:1.10",
         name='taxi_task_select',
         is_delete_operator_pod=True,
@@ -26,7 +26,7 @@ with DAG(
          arguments=[ 
         '--master','k8s://https://10.96.0.1:443',
         '--name','spark-name1',
-        '--conf', 'spark.kubernetes.namespace=spark',
+        '--conf', 'spark.kubernetes.namespace=spark-operator',
         '--conf', 'spark.kubernetes.allocation.batch.size=3',
         '--conf', 'spark.kubernetes.allocation.batch.delay=1',
         '--conf', 'spark.driver.cores=1',
