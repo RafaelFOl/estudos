@@ -3,15 +3,8 @@ import pendulum
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 from airflow.operators.python import PythonOperator
-from airflow.decorators import task,dag
+from airflow.decorators import task, dag
 
-@task.python
-def soprintar(vb):
-    print(vb)
-
-@task.python
-def _xxcom():
-    return {"key":'ola',"value":"mundo"}
 
 with DAG(
     dag_id="example_python_operator",
@@ -23,7 +16,7 @@ with DAG(
     
     taxi_task_select = KubernetesPodOperator(
         namespace='spark',
-        image="rroliveira/taxi-pipe:1.0",
+        image="rroliveira/taxi-pipe:1.10",
         name='taxi_task_select',
         is_delete_operator_pod=True,
         in_cluster=True,
@@ -42,19 +35,12 @@ with DAG(
         '--conf', 'spark.executor.memory=2192m',
         '--conf', 'spark.dynamicAllocation.enabled=true',
         '--conf', 'spark.dynamicAllocation.shuffleTracking.enabled=true',
-        '--conf', 'spark.kubernetes.driver.container.image=rroliveira/taxi-pipe:1.0',
-        '--conf', 'spark.kubernetes.executor.container.image=rroliveira/taxi-pipe:1.0',
+        '--conf', 'spark.kubernetes.driver.container.image=rroliveira/taxi-pipe:1.10',
+        '--conf', 'spark.kubernetes.executor.container.image=rroliveira/taxi-pipe:1.10',
         '--conf', 'spark.kubernetes.authenticate.driver.serviceAccountName=default',
         '--class' ,'org.apache.spark.examples.SparkPi',
         '--deploy-mode','cluster', 
         'local:///app/taxispark.py'
          ]
-     ) 
-
-    soprintar(_xxcom())
-
-
-    
-
-
-#taxi_task_select
+     )
+    taxi_task_select
