@@ -18,7 +18,7 @@ with DAG(
         namespace='spark-operator',
         image="rroliveira/taxi-pipe:1.10",
         name='taxi_task_select',
-        is_delete_operator_pod=True,
+        is_delete_operator_pod=False,
         in_cluster=True,
         task_id="taxi_task_select",
         get_logs=True,    
