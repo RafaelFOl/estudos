@@ -10,7 +10,7 @@ delta-core_212-070.jar
 
 # criar imagem docker
 ```
-docker build . -t pathDockerHub/taxi-pipe:1.9
+docker build . -t pathDockerHub/taxi-pipe:1.10
 docker tag taxi-pipe:1.0 pathDockerHub/taxi-pipe:1.0
 docker push pathDockerHub/taxi-pipe:1.0
 ```
@@ -30,3 +30,20 @@ kubectl create clusterrolebinding permissive-binding \
   --user=kubelet \
   --group=system:serviceaccounts
 ```
+# Interargir com S3 local
+
+necessario instalar o awscli
+```
+ aws s3api --endpoint-url="http://localhost:4566" list-buckets
+```
+# Install Jupyter
+```
+helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
+helm repo update
+
+helm install jupyterhub jupyterhub/jupyterhub -n notebook 
+```
+# Obter ip  Master K8S da porta 433
+kubectl get service --all-namespaces
+
+helm install engine spark-operator/spark-operator --namespace spark
