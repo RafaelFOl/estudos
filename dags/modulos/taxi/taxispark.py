@@ -23,7 +23,7 @@ if __name__ == '__main__':
      
      schema = spark.read.format('json').option('inferSchema', 'true').json('s3a://bronze/teste/*json')
 
-     schema.write.format("csv").save("s3a://bronze/save")
+     schema.write.format("parquet").save("s3a://bronze/save/credent.parquet")
      
      schema.show()
      
