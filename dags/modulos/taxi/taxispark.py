@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
      spark = SparkSession.builder.appName('test-dag-airflow-spark').getOrCreate()
      
-     schema = spark.read.format('json').option('inferSchema', 'true').json('s3a://bronze/*json')
+     schema = spark.read.format('json').option('inferSchema', 'true').json('s3a://bronze/teste/*json')
 
      schema.write.format("csv").save("s3a://bronze/save")
      
